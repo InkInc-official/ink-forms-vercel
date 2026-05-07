@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ink Forms | Ink Inc.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <img src="/logo.png" alt="Ink Inc." class="logo-icon" onerror="this.style.display='none'" />
+      <span class="logo-ink">Ink Forms</span>
+      <span class="badge">Ink Inc.</span>
+    </div>
+  </div>
+  <div class="tab-nav" id="tab-nav">
+    <button class="tab-btn active" data-tab="entry">応募フォーム</button>
+    <button class="tab-btn" data-tab="contract">本申込みフォーム</button>
+    <button class="tab-btn" data-tab="contact">お問い合わせ</button>
+    <div class="tab-break"></div>
+    <button class="tab-btn" data-tab="ticket">Ink Ticket</button>
+    <button class="tab-btn" data-tab="voice">Ink Voice</button>
+    <button class="tab-btn" data-tab="check">Ink Check</button>
+    <button class="tab-btn" data-tab="milestone">Ink Milestone</button>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- ── Ink Entry ── -->
+  <div id="view-entry" class="view active">
+    <div class="form-header">
+      <h1 class="form-title">🖊️ Ink Entry</h1>
+      <p class="form-desc">Ink Inc.への所属を希望される方はこちらからご応募ください。審査後、所長よりご連絡いたします。</p>
+    </div>
+    <form id="form-entry" novalidate>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>基本情報</div>
+        <div class="field-group">
+          <label class="field-label required">配信者名（活動名）</label>
+          <input type="text" name="streamer_name" class="text-input" placeholder="活動名を入力" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">IRIAMのURL</label>
+          <input type="text" name="iriam_id" class="text-input" placeholder="IRIAMのアカウントがない方は「なし」と記述してください" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">メールアドレス</label>
+          <input type="email" name="email" class="text-input" placeholder="example@email.com" required />
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>活動情報</div>
+        <div class="field-group">
+          <label class="field-label required">年齢層</label>
+          <select name="age_range" class="select-input" required>
+            <option value="">選択してください</option>
+            <option>18歳未満</option>
+            <option>18〜25歳</option>
+            <option>26〜35歳</option>
+            <option>36歳以上</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label required">配信歴</label>
+          <select name="experience" class="select-input" required>
+            <option value="">選択してください</option>
+            <option>なし</option>
+            <option>1年未満</option>
+            <option>1〜3年</option>
+            <option>3年以上</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label required">活動可能時間（月）</label>
+          <select name="available_hours" class="select-input" required>
+            <option value="">選択してください</option>
+            <option>月20時間以上</option>
+            <option>月50時間以上</option>
+            <option>月100時間以上</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label required">週の配信頻度（目標）</label>
+          <select name="frequency" class="select-input" required>
+            <option value="">選択してください</option>
+            <option>週1〜2回</option>
+            <option>週3〜4回</option>
+            <option>週5回以上</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>応募内容</div>
+        <div class="field-group">
+          <label class="field-label required">応募動機</label>
+          <textarea name="motivation" class="textarea" rows="4" placeholder="Ink Inc.への応募動機を教えてください" required></textarea>
+        </div>
+        <div class="field-group">
+          <label class="field-label required">自己PR</label>
+          <textarea name="self_pr" class="textarea" rows="4" placeholder="あなたの強みやアピールポイントを教えてください" required></textarea>
+        </div>
+        <div class="field-group">
+          <label class="field-label">質問・懸念事項（任意）</label>
+          <textarea name="questions" class="textarea" rows="3" placeholder="気になることがあれば"></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>連絡先</div>
+        <div class="field-group">
+          <label class="field-label required">連絡手段</label>
+          <select name="contact_method" class="select-input" required>
+            <option value="">選択してください</option>
+            <option>Discord</option>
+            <option>LINE</option>
+            <option>Twitter(X)</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label required">連絡先ID</label>
+          <input type="text" name="contact_id" class="text-input" placeholder="IDを入力" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label">XアカウントURL（任意）</label>
+          <input type="text" name="x_url" class="text-input" placeholder="https://x.com/..." />
+        </div>
+      </section>
+
+      <div id="entry-error" class="error-msg" hidden></div>
+      <button type="submit" class="submit-btn"><span>応募する</span></button>
+      <p class="privacy-note">入力内容は所長のみが確認します。</p>
+    </form>
+    <div id="entry-result" class="result-card" hidden></div>
+  </div>
+
+  <!-- ── Ink Contract ── -->
+  <div id="view-contract" class="view">
+    <div class="form-header">
+      <h1 class="form-title">📌 Ink Contract</h1>
+      <p class="form-desc">所属が決まった方はこちらから本申込みを行ってください。所長から発行されたパスワードが必要です。</p>
+    </div>
+
+    <div id="contract-lock" class="lock-screen">
+      <div class="lock-icon">🔒</div>
+      <p class="lock-desc">このフォームはパスワードが必要です</p>
+      <div class="field-group">
+        <input type="password" id="contract-pw-input" class="text-input" placeholder="パスワードを入力" />
+      </div>
+      <button id="contract-pw-btn" class="submit-btn"><span>確認する</span></button>
+      <div id="contract-pw-error" class="error-msg" hidden>パスワードが違います</div>
+    </div>
+
+    <form id="form-contract" novalidate style="display:none">
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>基本情報</div>
+        <div class="field-group">
+          <label class="field-label required">配信者名（活動名）</label>
+          <input type="text" name="liver_name" class="text-input" placeholder="活動名" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">本名</label>
+          <input type="text" name="real_name" class="text-input" placeholder="本名" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">フリガナ</label>
+          <input type="text" name="furigana" class="text-input" placeholder="フリガナ" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">メールアドレス</label>
+          <input type="email" name="email" class="text-input" placeholder="example@email.com" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">生年月日</label>
+          <input type="date" name="birthdate" class="text-input" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">未成年ですか？</label>
+          <select name="is_minor" class="select-input" id="is-minor-select" required>
+            <option value="">選択してください</option>
+            <option value="false">いいえ</option>
+            <option value="true">はい</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label required">住所</label>
+          <input type="text" name="address" class="text-input" placeholder="都道府県から入力" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">電話番号</label>
+          <input type="tel" name="phone" class="text-input" placeholder="090-0000-0000" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">性別</label>
+          <select name="gender" class="select-input" required>
+            <option value="">選択してください</option>
+            <option>男性</option>
+            <option>女性</option>
+            <option>その他</option>
+            <option>回答しない</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label required">XアカウントURL</label>
+          <input type="text" name="x_url" class="text-input" placeholder="https://x.com/..." required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">ライバー名（配信で使う名前）</label>
+          <input type="text" name="display_name" class="text-input" placeholder="ライバー名" required />
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>口座情報</div>
+        <div class="field-group">
+          <label class="field-label required">口座名義人</label>
+          <input type="text" name="bank_holder" class="text-input" placeholder="カナで入力" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">銀行名</label>
+          <input type="text" name="bank_name" class="text-input" placeholder="○○銀行" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">支店名</label>
+          <input type="text" name="bank_branch" class="text-input" placeholder="○○支店" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">口座番号</label>
+          <input type="text" name="bank_number" class="text-input" placeholder="1234567" required />
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>身分証・配信情報</div>
+        <div class="field-group">
+          <label class="field-label required">顔のわかる身分証（jpg/png/pdf・10MB以内）</label>
+          <input type="file" name="id_file" class="file-input" accept=".jpg,.jpeg,.png,.pdf" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">配信時間帯</label>
+          <textarea name="stream_hours" class="textarea" rows="2" placeholder="例：平日20時〜23時、土日は不定" required></textarea>
+        </div>
+        <div class="field-group">
+          <label class="field-label required">配信経験</label>
+          <textarea name="stream_exp" class="textarea" rows="3" placeholder="これまでの配信経験を教えてください" required></textarea>
+        </div>
+      </section>
+
+      <section class="card" id="guardian-section" style="display:none">
+        <div class="section-heading"><span class="section-icon">◆</span>親権者情報（未成年の方のみ）</div>
+        <div class="field-group">
+          <label class="field-label required">親権者との続柄</label>
+          <input type="text" name="guardian_relation" class="text-input" placeholder="例：母" />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">親権者名</label>
+          <input type="text" name="guardian_name" class="text-input" placeholder="親権者のお名前" />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">親権者メールアドレス</label>
+          <input type="email" name="guardian_email" class="text-input" placeholder="親権者のメールアドレス" />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">親権者電話番号</label>
+          <input type="tel" name="guardian_phone" class="text-input" placeholder="親権者の電話番号" />
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>同意事項</div>
+        <label class="checkbox-label">
+          <input type="checkbox" name="agree" required />
+          <span>入力した情報に偽りがないことを確認し、Ink Inc.の規約に同意します</span>
+        </label>
+      </section>
+
+      <div id="contract-error" class="error-msg" hidden></div>
+      <button type="submit" class="submit-btn"><span>本申込みを送信する</span></button>
+      <p class="privacy-note">入力内容は所長のみが確認します。口座情報・身分証はDiscordに送信されません。</p>
+    </form>
+    <div id="contract-result" class="result-card" hidden></div>
+  </div>
+
+  <!-- ── Ink Contact ── -->
+  <div id="view-contact" class="view">
+    <div class="form-header">
+      <h1 class="form-title">📢 Ink Contact</h1>
+      <p class="form-desc">Ink Inc.へのご質問・ご相談はこちらからお気軽にどうぞ。5営業日以内にご返信いたします。</p>
+    </div>
+    <form id="form-contact" novalidate>
+      <section class="card">
+        <div class="field-group">
+          <label class="field-label required">氏名</label>
+          <input type="text" name="contact_name" class="text-input" placeholder="お名前を入力" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">メールアドレス</label>
+          <input type="email" name="contact_email" class="text-input" placeholder="example@email.com" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label">XアカウントURL（任意）</label>
+          <input type="text" name="contact_x_url" class="text-input" placeholder="https://x.com/..." />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">お問い合わせ内容</label>
+          <textarea name="contact_body" class="textarea" rows="6" placeholder="ご質問・ご相談内容をご記入ください" required></textarea>
+        </div>
+      </section>
+
+      <div id="contact-error" class="error-msg" hidden></div>
+      <button type="submit" class="submit-btn"><span>送信する</span></button>
+      <p class="privacy-note">いただいた情報は返信目的のみに使用します。第三者への提供は行いません。</p>
+    </form>
+    <div id="contact-result" class="result-card" hidden></div>
+  </div>
+
+  <!-- ── Ink Ticket ── -->
+  <div id="view-ticket" class="view">
+    <div class="form-header">
+      <h1 class="form-title">🎟 Ink Ticket</h1>
+      <p class="form-desc">毎月25日までに申し込んでください。翌月1日にコードをお渡しします。所属ライバー限定です。</p>
+    </div>
+
+    <div class="ticket-benefits card">
+      <div class="section-heading"><span class="section-icon">◆</span>Ink Inc.ライバーの特典</div>
+      <div class="benefit-list">
+        <div class="benefit-item">🎬 ムビチケ 1,500円分</div>
+        <div class="benefit-item">☕ スタバ 500円分 × 3枚</div>
+        <div class="benefit-item">🙅 今月はもらわない</div>
+      </div>
+    </div>
+
+    <form id="form-ticket" novalidate>
+      <section class="card">
+        <div class="field-group">
+          <label class="field-label required">ライバー名</label>
+          <select name="liver_name" class="select-input liver-select" required>
+            <option value="">選択してください</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label required">チケットの種類</label>
+          <select name="ticket_type" class="select-input" required>
+            <option value="">選択してください</option>
+            <option>ムビチケ 1,500円分</option>
+            <option>スタバ 500円分 × 3枚</option>
+            <option>今月はもらわない</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label required">最近と今後のこと</label>
+          <textarea name="recent_note" class="textarea" rows="4" placeholder="配信の近況や今後の目標など、気軽に教えてください" required></textarea>
+        </div>
+      </section>
+
+      <section class="card pw-section">
+        <label class="field-label required">パスワード</label>
+        <input type="password" name="password" class="text-input" placeholder="所属ライバー共通パスワード" />
+      </section>
+
+      <div id="ticket-error" class="error-msg" hidden></div>
+      <button type="submit" class="submit-btn pw-submit" disabled><span>申込む</span></button>
+      <p class="privacy-note">所属ライバー限定です。</p>
+    </form>
+    <div id="ticket-result" class="result-card" hidden></div>
+  </div>
+
+  <!-- ── Ink Voice ── -->
+  <div id="view-voice" class="view">
+    <div class="form-header">
+      <h1 class="form-title">💬 Ink Voice</h1>
+      <p class="form-desc">所長から案内があった際にご回答ください。所属ライバー限定です。</p>
+    </div>
+    <form id="form-voice" novalidate>
+      <section class="card">
+        <div class="field-group">
+          <label class="field-label required">ライバー名</label>
+          <select name="liver_name" class="select-input liver-select" required>
+            <option value="">選択してください</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label required">配信の振り返り</label>
+          <textarea name="review" class="textarea" rows="4" placeholder="配信を振り返って..." required></textarea>
+        </div>
+        <div class="field-group">
+          <label class="field-label required">現在、配信活動に影響していることはありますか？</label>
+          <textarea name="influence" class="textarea" rows="3" placeholder="体調、生活環境、モチベーションなど" required></textarea>
+        </div>
+        <div class="field-group">
+          <label class="field-label required">来月に向けて、今思っていること</label>
+          <textarea name="next_month" class="textarea" rows="3" placeholder="目標や気持ち、意気込みなど" required></textarea>
+        </div>
+        <div class="field-group">
+          <label class="field-label">事務所にサポートしてほしいこと（任意）</label>
+          <textarea name="support_request" class="textarea" rows="3" placeholder="何かあれば"></textarea>
+        </div>
+      </section>
+
+      <section class="card pw-section">
+        <label class="field-label required">パスワード</label>
+        <input type="password" name="password" class="text-input" placeholder="所属ライバー共通パスワード" />
+      </section>
+
+      <div id="voice-error" class="error-msg" hidden></div>
+      <button type="submit" class="submit-btn pw-submit" disabled><span>送信する</span></button>
+    </form>
+    <div id="voice-result" class="result-card" hidden></div>
+  </div>
+
+  <!-- ── Ink Check ── -->
+  <div id="view-check" class="view">
+    <div class="form-header">
+      <p class="form-date" id="check-date"></p>
+      <h1 class="form-title">❤️‍🩹 Ink Check</h1>
+      <p class="form-desc">毎月1日に回答してください。所属ライバー限定です。</p>
+    </div>
+    <form id="form-check" novalidate>
+      <section class="card">
+        <label class="field-label required">ライバー名</label>
+        <select id="check-liver" name="liver_name" class="text-input liver-select" required>
+          <option value="">選択してください</option>
+        </select>
+      </section>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>現在の状態（1:良好 〜 5:非常につらい）</div>
+        <div class="score-grid">
+          <div class="score-item" data-field="score_private"><div class="score-label">プライベート</div><div class="score-buttons"><button type="button" class="score-btn" data-value="1">1</button><button type="button" class="score-btn" data-value="2">2</button><button type="button" class="score-btn" data-value="3">3</button><button type="button" class="score-btn" data-value="4">4</button><button type="button" class="score-btn" data-value="5">5</button></div><div class="score-hint"><span>良好</span><span>非常につらい</span></div></div>
+          <div class="score-item" data-field="score_rest"><div class="score-label">休息</div><div class="score-buttons"><button type="button" class="score-btn" data-value="1">1</button><button type="button" class="score-btn" data-value="2">2</button><button type="button" class="score-btn" data-value="3">3</button><button type="button" class="score-btn" data-value="4">4</button><button type="button" class="score-btn" data-value="5">5</button></div><div class="score-hint"><span>良好</span><span>非常につらい</span></div></div>
+          <div class="score-item" data-field="score_rhythm"><div class="score-label">生活リズムの乱れ</div><div class="score-buttons"><button type="button" class="score-btn" data-value="1">1</button><button type="button" class="score-btn" data-value="2">2</button><button type="button" class="score-btn" data-value="3">3</button><button type="button" class="score-btn" data-value="4">4</button><button type="button" class="score-btn" data-value="5">5</button></div><div class="score-hint"><span>良好</span><span>非常につらい</span></div></div>
+          <div class="score-item" data-field="score_mental"><div class="score-label">精神的な落ち込み</div><div class="score-buttons"><button type="button" class="score-btn" data-value="1">1</button><button type="button" class="score-btn" data-value="2">2</button><button type="button" class="score-btn" data-value="3">3</button><button type="button" class="score-btn" data-value="4">4</button><button type="button" class="score-btn" data-value="5">5</button></div><div class="score-hint"><span>良好</span><span>非常につらい</span></div></div>
+          <div class="score-item" data-field="score_fan"><div class="score-label">配信やファン対応</div><div class="score-buttons"><button type="button" class="score-btn" data-value="1">1</button><button type="button" class="score-btn" data-value="2">2</button><button type="button" class="score-btn" data-value="3">3</button><button type="button" class="score-btn" data-value="4">4</button><button type="button" class="score-btn" data-value="5">5</button></div><div class="score-hint"><span>良好</span><span>非常につらい</span></div></div>
+          <div class="score-item" data-field="score_stream"><div class="score-label">配信準備・配信内容</div><div class="score-buttons"><button type="button" class="score-btn" data-value="1">1</button><button type="button" class="score-btn" data-value="2">2</button><button type="button" class="score-btn" data-value="3">3</button><button type="button" class="score-btn" data-value="4">4</button><button type="button" class="score-btn" data-value="5">5</button></div><div class="score-hint"><span>良好</span><span>非常につらい</span></div></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>テキスト入力（任意）</div>
+        <div class="field-group">
+          <label class="field-label">相談内容</label>
+          <textarea id="check-consult" class="textarea" rows="3" placeholder="所長に相談したいことがあれば"></textarea>
+        </div>
+        <div class="field-group">
+          <label class="field-label">自由記述</label>
+          <textarea id="check-free" class="textarea" rows="3" placeholder="その他、自由に"></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>面接希望</div>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="interview_request" value="false" checked /><span class="radio-custom"></span>希望しない</label>
+          <label class="radio-label"><input type="radio" name="interview_request" value="true" /><span class="radio-custom"></span>希望する</label>
+        </div>
+      </section>
+
+      <section class="card pw-section">
+        <label class="field-label required">パスワード</label>
+        <input type="password" id="check-password" class="text-input" placeholder="所属ライバー共通パスワード" />
+      </section>
+
+      <div id="check-error" class="error-msg" hidden></div>
+      <button type="submit" id="check-submit-btn" class="submit-btn pw-submit" disabled>
+        <span id="check-submit-label">回答を送信する</span>
+        <span id="check-spinner" class="spinner" hidden></span>
+      </button>
+      <p class="privacy-note">回答内容は所長のみが確認します。</p>
+    </form>
+    <div id="check-result" class="result-card" hidden></div>
+  </div>
+
+  <!-- ── Ink Milestone ── -->
+  <div id="view-milestone" class="view">
+    <div class="form-header">
+      <h1 class="form-title">🏆 Ink Milestone</h1>
+      <p class="form-desc">Ink Song・Ink Duo申請はこちらから。所属ライバー限定です。</p>
+    </div>
+
+    <form id="form-milestone" novalidate>
+      <section class="card">
+        <label class="field-label required">ライバー名</label>
+        <select id="milestone-liver" name="liver_name" class="select-input liver-select" required>
+          <option value="">選択してください</option>
+        </select>
+      </section>
+
+      <!-- ライバー情報カード -->
+      <div id="milestone-liver-card" class="milestone-liver-card" style="display:none">
+        <div class="card">
+          <div class="section-heading"><span class="section-icon">◆</span>ライバー情報</div>
+          <div class="milestone-info-grid">
+            <div class="milestone-info-item">
+              <div class="milestone-info-label">デビュー日</div>
+              <div class="milestone-info-value" id="mi-debut">−</div>
+            </div>
+            <div class="milestone-info-item">
+              <div class="milestone-info-label">Ink Duo適用日</div>
+              <div class="milestone-info-value" id="mi-base">−</div>
+            </div>
+            <div class="milestone-info-item">
+              <div class="milestone-info-label">Ink Duo解放日</div>
+              <div class="milestone-info-value" id="mi-unlock">−</div>
+            </div>
+            <div class="milestone-info-item">
+              <div class="milestone-info-label">Ink Duo状況</div>
+              <div class="milestone-info-value" id="mi-status">−</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="card" id="milestone-form-body">
+        <div class="field-group">
+          <label class="field-label required">達成内容</label>
+          <select id="milestone-type" name="milestone_type" class="select-input" required>
+            <option value="">選択してください</option>
+            <optgroup label="🎵 Ink Song（ランク達成・維持のお祝い）">
+              <option value="C5ランク到達">C5ランク到達</option>
+              <option value="B1ランク到達">B1ランク到達</option>
+              <option value="A1ランク到達">A1ランク到達</option>
+              <option value="S1ランク到達">S1ランク到達</option>
+              <option value="S2ランク到達">S2ランク到達</option>
+              <option value="S3ランク到達">S3ランク到達</option>
+              <option value="S3ランク維持（1ヶ月）">S3ランク維持（1ヶ月）</option>
+            </optgroup>
+            <optgroup label="🎶 Ink Duo（2ヶ月継続の感謝）">
+              <option value="Ink Duo申請（2ヶ月継続達成）" id="ink-duo-option">Ink Duo申請（2ヶ月継続達成）</option>
+            </optgroup>
+          </select>
+          <div id="ink-duo-locked-msg" class="ink-duo-msg" style="display:none"></div>
+        </div>
+
+        <div class="field-group" id="achieved-at-group">
+          <label class="field-label required">達成日</label>
+          <input type="date" id="milestone-achieved-at" name="achieved_at" class="text-input" required />
+        </div>
+      </section>
+
+      <section class="card pw-section">
+        <label class="field-label required">パスワード</label>
+        <input type="password" id="milestone-pw-input" class="text-input" placeholder="所属ライバー共通パスワード" />
+      </section>
+
+      <div id="milestone-error" class="error-msg" hidden></div>
+      <button type="submit" id="milestone-submit-btn" class="submit-btn pw-submit" disabled>
+        <span id="milestone-submit-label">内容を送信する</span>
+        <span id="milestone-spinner" class="spinner" hidden></span>
+      </button>
+      <p class="privacy-note">所属ライバー限定です。</p>
+    </form>
+    <div id="milestone-result" class="result-card" hidden></div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <span>Ink Inc. | AI Creation, Human Care. The Future Drawn Together.</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
