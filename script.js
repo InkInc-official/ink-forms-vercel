@@ -4,6 +4,12 @@
  */
 
 const API = "https://goofball-marital-lying.ngrok-free.dev";
+const NGROK_HEADERS = { "ngrok-skip-browser-warning": "true", "Content-Type": "application/json" };
+
+async function apiFetch(url, options = {}) {
+  const headers = { "ngrok-skip-browser-warning": "true", ...options.headers };
+  return fetch(url, { ...options, headers });
+}
 
 // ── タブ切替 ──────────────────────────────────
 document.querySelectorAll(".tab-btn").forEach(btn => {
@@ -18,7 +24,7 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 // ── ライバー名プルダウン ──────────────────────
 async function loadLivers() {
   try {
-    const res = await fetch(`${API}/api/livers`);
+    const res = await apiFetch(`${API}/api/livers`, { headers: { "ngrok-skip-browser-warning": "true" } });
     const names = await res.json();
     document.querySelectorAll(".liver-select").forEach(sel => {
       const current = sel.value;
@@ -53,7 +59,7 @@ document.querySelectorAll(".pw-section input[type='password']").forEach(input =>
   input.addEventListener("input", async () => {
     if (!input.value.trim()) { btn.disabled = true; return; }
     try {
-      const res = await fetch(`${API}${apiUrl}`, {
+      const res = await apiFetch(`${API}${apiUrl}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password: input.value }),
@@ -74,7 +80,7 @@ contractPwBtn.addEventListener("click", async () => {
   const pw = contractPwInput.value.trim();
   if (!pw) return;
   try {
-    const res = await fetch(`${API}/api/check-password/contract`, {
+    const res = await apiFetch(`${API}/api/check-password/contract`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password: pw }),
@@ -133,7 +139,7 @@ document.getElementById("check-password").addEventListener("input", async (e) =>
   const pw = e.target.value;
   if (!pw) { document.getElementById("check-submit-btn").disabled = true; return; }
   try {
-    const res = await fetch(`${API}/api/check-password/check`, {
+    const res = await apiFetch(`${API}/api/check-password/check`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password: pw }),
@@ -181,7 +187,7 @@ document.getElementById("form-entry").addEventListener("submit", async (e) => {
   const btn = e.target.querySelector(".submit-btn");
   btn.disabled = true;
   try {
-    const res = await fetch(`${API}/api/entry/submit`, {
+    const res = await apiFetch(`${API}/api/entry/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -219,7 +225,7 @@ document.getElementById("form-contract").addEventListener("submit", async (e) =>
   const btn = e.target.querySelector(".submit-btn");
   btn.disabled = true;
   try {
-    const res = await fetch(`${API}/api/contract/submit`, {
+    const res = await apiFetch(`${API}/api/contract/submit`, {
       method: "POST",
       body: fd,
     });
@@ -247,7 +253,7 @@ document.getElementById("form-ticket").addEventListener("submit", async (e) => {
   const btn = e.target.querySelector(".submit-btn");
   btn.disabled = true;
   try {
-    const res = await fetch(`${API}/api/ticket/submit`, {
+    const res = await apiFetch(`${API}/api/ticket/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -276,7 +282,7 @@ document.getElementById("form-voice").addEventListener("submit", async (e) => {
   const btn = e.target.querySelector(".submit-btn");
   btn.disabled = true;
   try {
-    const res = await fetch(`${API}/api/voice/submit`, {
+    const res = await apiFetch(`${API}/api/voice/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -305,7 +311,7 @@ document.getElementById("form-contact").addEventListener("submit", async (e) => 
   const btn = e.target.querySelector(".submit-btn");
   btn.disabled = true;
   try {
-    const res = await fetch(`${API}/api/contact/submit`, {
+    const res = await apiFetch(`${API}/api/contact/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -356,7 +362,7 @@ document.getElementById("form-check").addEventListener("submit", async (e) => {
   spinner.hidden = false;
 
   try {
-    const res = await fetch(`${API}/api/check/submit`, {
+    const res = await apiFetch(`${API}/api/check/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -396,7 +402,7 @@ document.getElementById("milestone-liver").addEventListener("change", async (e) 
   }
 
   try {
-    const res = await fetch(`${API}/api/livers/${encodeURIComponent(name)}`);
+    const res = await apiFetch(`${API}/api/livers/${encodeURIComponent(name)}`);
     const d = await res.json();
 
     document.getElementById("mi-debut").textContent   = d.debut_at           ? formatDate(d.debut_at)           : "未登録";
@@ -483,7 +489,7 @@ document.getElementById("form-milestone").addEventListener("submit", async (e) =
   spinner.hidden = false;
 
   try {
-    const res = await fetch(`${API}/api/milestone/submit`, {
+    const res = await apiFetch(`${API}/api/milestone/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ liver_name: liverName, milestone_type: milestoneType, achieved_at: achievedAt, password }),
