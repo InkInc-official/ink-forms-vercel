@@ -213,3 +213,12 @@ body {
 @media (max-width: 400px) {
   .milestone-info-grid { grid-template-columns: 1fr; }
 }
+
+/* フォームタイトルアイコン */
+.form-title-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 6px;
+}
