@@ -222,3 +222,17 @@ body {
   vertical-align: middle;
   margin-right: 6px;
 }
+
+/* Ticketアイコン・ロックアイコン */
+.benefit-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.lock-icon-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
