@@ -236,3 +236,16 @@ body {
   height: 48px;
   object-fit: contain;
 }
+
+/* 身分証注意書き */
+.id-notice {
+  background: rgba(124,106,247,0.08);
+  border: 1px solid rgba(124,106,247,0.25);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+.id-notice p { margin: 0; }
