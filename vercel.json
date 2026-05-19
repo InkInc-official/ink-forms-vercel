@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://goofball-marital-lying.ngrok-free.app/api/:path*"
+      "destination": "https://goofball-marital-lying.ngrok-free.dev/api/:path*"
     },
     {
       "source": "/(.*)",
