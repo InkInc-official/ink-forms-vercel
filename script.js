@@ -3,13 +3,7 @@
  * Ink Inc. | AI Creation, Human Care. The Future Drawn Together.
  */
 
-const API = "https://goofball-marital-lying.ngrok-free.dev";
-const NGROK_HEADERS = { "ngrok-skip-browser-warning": "true", "Content-Type": "application/json" };
-
-async function apiFetch(url, options = {}) {
-  const headers = { "ngrok-skip-browser-warning": "true", ...options.headers };
-  return fetch(url, { ...options, headers });
-}
+const API = window.location.origin;
 
 // ── タブ切替 ──────────────────────────────────
 document.querySelectorAll(".tab-btn").forEach(btn => {
@@ -24,7 +18,7 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 // ── ライバー名プルダウン ──────────────────────
 async function loadLivers() {
   try {
-    const res = await apiFetch(`${API}/api/livers`, { headers: { "ngrok-skip-browser-warning": "true" } });
+    const res = await fetch(`${API}/api/livers`);
     const names = await res.json();
     document.querySelectorAll(".liver-select").forEach(sel => {
       const current = sel.value;
@@ -46,6 +40,7 @@ const PW_API_MAP = {
   "form-ticket":     "/api/check-password/ticket",
   "form-voice":      "/api/check-password/voice",
   "form-milestone":  "/api/check-password/milestone",
+  "form-book":       "/api/check-password/booking",
 };
 
 // ── パスワード入力でボタン活性化 ─────────────
@@ -59,7 +54,7 @@ document.querySelectorAll(".pw-section input[type='password']").forEach(input =>
   input.addEventListener("input", async () => {
     if (!input.value.trim()) { btn.disabled = true; return; }
     try {
-      const res = await apiFetch(`${API}${apiUrl}`, {
+      const res = await fetch(`${API}${apiUrl}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password: input.value }),
@@ -80,7 +75,7 @@ contractPwBtn.addEventListener("click", async () => {
   const pw = contractPwInput.value.trim();
   if (!pw) return;
   try {
-    const res = await apiFetch(`${API}/api/check-password/contract`, {
+    const res = await fetch(`${API}/api/check-password/contract`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password: pw }),
@@ -139,7 +134,7 @@ document.getElementById("check-password").addEventListener("input", async (e) =>
   const pw = e.target.value;
   if (!pw) { document.getElementById("check-submit-btn").disabled = true; return; }
   try {
-    const res = await apiFetch(`${API}/api/check-password/check`, {
+    const res = await fetch(`${API}/api/check-password/check`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password: pw }),
@@ -187,7 +182,7 @@ document.getElementById("form-entry").addEventListener("submit", async (e) => {
   const btn = e.target.querySelector(".submit-btn");
   btn.disabled = true;
   try {
-    const res = await apiFetch(`${API}/api/entry/submit`, {
+    const res = await fetch(`${API}/api/entry/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -225,7 +220,7 @@ document.getElementById("form-contract").addEventListener("submit", async (e) =>
   const btn = e.target.querySelector(".submit-btn");
   btn.disabled = true;
   try {
-    const res = await apiFetch(`${API}/api/contract/submit`, {
+    const res = await fetch(`${API}/api/contract/submit`, {
       method: "POST",
       body: fd,
     });
@@ -253,7 +248,7 @@ document.getElementById("form-ticket").addEventListener("submit", async (e) => {
   const btn = e.target.querySelector(".submit-btn");
   btn.disabled = true;
   try {
-    const res = await apiFetch(`${API}/api/ticket/submit`, {
+    const res = await fetch(`${API}/api/ticket/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -282,7 +277,7 @@ document.getElementById("form-voice").addEventListener("submit", async (e) => {
   const btn = e.target.querySelector(".submit-btn");
   btn.disabled = true;
   try {
-    const res = await apiFetch(`${API}/api/voice/submit`, {
+    const res = await fetch(`${API}/api/voice/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -311,7 +306,7 @@ document.getElementById("form-contact").addEventListener("submit", async (e) => 
   const btn = e.target.querySelector(".submit-btn");
   btn.disabled = true;
   try {
-    const res = await apiFetch(`${API}/api/contact/submit`, {
+    const res = await fetch(`${API}/api/contact/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -362,7 +357,7 @@ document.getElementById("form-check").addEventListener("submit", async (e) => {
   spinner.hidden = false;
 
   try {
-    const res = await apiFetch(`${API}/api/check/submit`, {
+    const res = await fetch(`${API}/api/check/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -402,7 +397,7 @@ document.getElementById("milestone-liver").addEventListener("change", async (e) 
   }
 
   try {
-    const res = await apiFetch(`${API}/api/livers/${encodeURIComponent(name)}`);
+    const res = await fetch(`${API}/api/livers/${encodeURIComponent(name)}`);
     const d = await res.json();
 
     document.getElementById("mi-debut").textContent   = d.debut_at           ? formatDate(d.debut_at)           : "未登録";
@@ -489,7 +484,7 @@ document.getElementById("form-milestone").addEventListener("submit", async (e) =
   spinner.hidden = false;
 
   try {
-    const res = await apiFetch(`${API}/api/milestone/submit`, {
+    const res = await fetch(`${API}/api/milestone/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ liver_name: liverName, milestone_type: milestoneType, achieved_at: achievedAt, password }),
@@ -517,3 +512,119 @@ function formatDate(dateStr) {
   const [y, m, d] = dateStr.split("-");
   return `${y}年${m}月${d}日`;
 }
+
+// ── Ink Book ──────────────────────────────────
+
+// ロック画面処理
+const bookLockBtn   = document.getElementById("book-lock-btn");
+const bookLockInput = document.getElementById("book-lock-pw");
+const bookLockError = document.getElementById("book-lock-error");
+
+if (bookLockBtn) {
+  bookLockBtn.addEventListener("click", async () => {
+    const pw = bookLockInput.value.trim();
+    if (!pw) return;
+    try {
+      const res = await fetch(`${API}/api/check-password/booking`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: pw }),
+      });
+      const data = await res.json();
+      if (data.valid) {
+        document.getElementById("book-lock").style.display = "none";
+        document.getElementById("form-book").style.display = "block";
+      } else {
+        bookLockError.hidden = false;
+        bookLockError.textContent = "パスワードが違います";
+      }
+    } catch { bookLockError.hidden = false; }
+  });
+
+  bookLockInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") bookLockBtn.click();
+  });
+}
+
+// 予約種別による内容ラベル切り替え
+const bookTypeSelect = document.getElementById("book-type");
+const bookContentLabel = document.getElementById("book-content-label");
+if (bookTypeSelect && bookContentLabel) {
+  bookTypeSelect.addEventListener("change", () => {
+    if (bookTypeSelect.value === "entry") {
+      bookContentLabel.textContent = "面談で話したいこと";
+    } else if (bookTypeSelect.value === "liver") {
+      bookContentLabel.textContent = "相談・カウンセリングの概要";
+    } else {
+      bookContentLabel.textContent = "内容の記述";
+    }
+  });
+}
+
+// 日付ピッカーに翌日以降を設定
+(function setMinDates() {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const tomorrowStr = tomorrow.toISOString().split("T")[0];
+  ["book-date1", "book-date2", "book-date3"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.min = tomorrowStr;
+  });
+})();
+
+document.getElementById("form-book").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const btn     = e.target.querySelector(".submit-btn");
+  const label   = btn.querySelector(".btn-label");
+  const spinner = btn.querySelector(".spinner");
+  btn.disabled  = true;
+  label.hidden  = true;
+  spinner.hidden = false;
+  clearError("book-error");
+
+  const applicantName  = document.getElementById("book-name").value.trim();
+  const discordId      = document.getElementById("book-discord").value.trim();
+  const bookingType    = document.getElementById("book-type").value;
+  const bookingContent = document.getElementById("book-content").value.trim();
+  const date1          = document.getElementById("book-date1").value;
+  const time1          = document.getElementById("book-time1").value;
+  const date2          = document.getElementById("book-date2").value;
+  const time2          = document.getElementById("book-time2").value;
+  const date3          = document.getElementById("book-date3").value;
+  const time3          = document.getElementById("book-time3").value;
+  const password       = document.getElementById("book-password").value;
+
+  try {
+    const res = await fetch(`${API}/api/booking/submit`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        applicant_name:  applicantName,
+        discord_id:      discordId,
+        booking_type:    bookingType,
+        booking_content: bookingContent,
+        preferred_date1: date1,
+        preferred_time1: time1,
+        preferred_date2: date2 || null,
+        preferred_time2: time2 || null,
+        preferred_date3: date3 || null,
+        preferred_time3: time3 || null,
+        password,
+      }),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      document.getElementById("form-book").style.display = "none";
+      showResult("book-result", data.message);
+    } else {
+      showError("book-error", data.detail || "送信に失敗しました");
+      btn.disabled = false;
+    }
+  } catch(err) {
+    showError("book-error", `送信に失敗しました: ${err.message}`);
+    btn.disabled = false;
+  } finally {
+    label.hidden   = false;
+    spinner.hidden = true;
+  }
+});

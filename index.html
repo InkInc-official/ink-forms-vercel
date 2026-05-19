@@ -28,6 +28,7 @@
     <button class="tab-btn" data-tab="voice">Ink Voice</button>
     <button class="tab-btn" data-tab="check">Ink Check</button>
     <button class="tab-btn" data-tab="milestone">Ink Milestone</button>
+    <button class="tab-btn" data-tab="book">📅 個別予約</button>
   </div>
 </header>
 
@@ -36,7 +37,7 @@
   <!-- ── Ink Entry ── -->
   <div id="view-entry" class="view active">
     <div class="form-header">
-      <h1 class="form-title"><img src="icons/Ink Entry.png" alt="Ink Entry" class="form-title-icon"> Ink Entry</h1>
+      <h1 class="form-title">🖊️ Ink Entry</h1>
       <p class="form-desc">Ink Inc.への所属を希望される方はこちらからご応募ください。審査後、所長よりご連絡いたします。</p>
     </div>
     <form id="form-entry" novalidate>
@@ -146,12 +147,12 @@
   <!-- ── Ink Contract ── -->
   <div id="view-contract" class="view">
     <div class="form-header">
-      <h1 class="form-title"><img src="icons/Ink Contract.png" alt="Ink Contract" class="form-title-icon"> Ink Contract</h1>
+      <h1 class="form-title">📌 Ink Contract</h1>
       <p class="form-desc">所属が決まった方はこちらから本申込みを行ってください。所長から発行されたパスワードが必要です。</p>
     </div>
 
     <div id="contract-lock" class="lock-screen">
-      <div class="lock-icon"><img src="icons/パスワード.png" alt="lock" class="lock-icon-img"></div>
+      <div class="lock-icon">🔒</div>
       <p class="lock-desc">このフォームはパスワードが必要です</p>
       <div class="field-group">
         <input type="password" id="contract-pw-input" class="text-input" placeholder="パスワードを入力" />
@@ -214,10 +215,6 @@
           <input type="text" name="x_url" class="text-input" placeholder="https://x.com/..." required />
         </div>
         <div class="field-group">
-          <label class="field-label required">Discord ID</label>
-          <input type="text" name="discord_id" class="text-input" placeholder="例：username#0000 または username" required />
-        </div>
-        <div class="field-group">
           <label class="field-label required">ライバー名（配信で使う名前）</label>
           <input type="text" name="display_name" class="text-input" placeholder="ライバー名" required />
         </div>
@@ -247,10 +244,6 @@
         <div class="section-heading"><span class="section-icon">◆</span>身分証・配信情報</div>
         <div class="field-group">
           <label class="field-label required">顔のわかる身分証（jpg/png/pdf・10MB以内）</label>
-          <div class="id-notice">
-            <p>✅ 使用可能：運転免許証 / パスポート / 学生証（顔写真付き） / その他顔写真付き公的身分証明書</p>
-            <p>❌ マイナンバーカードは受け付けておりません</p>
-          </div>
           <input type="file" name="id_file" class="file-input" accept=".jpg,.jpeg,.png,.pdf" required />
         </div>
         <div class="field-group">
@@ -301,7 +294,7 @@
   <!-- ── Ink Contact ── -->
   <div id="view-contact" class="view">
     <div class="form-header">
-      <h1 class="form-title"><img src="icons/Ink Contact.png" alt="Ink Contact" class="form-title-icon"> Ink Contact</h1>
+      <h1 class="form-title">📢 Ink Contact</h1>
       <p class="form-desc">Ink Inc.へのご質問・ご相談はこちらからお気軽にどうぞ。5営業日以内にご返信いたします。</p>
     </div>
     <form id="form-contact" novalidate>
@@ -334,16 +327,16 @@
   <!-- ── Ink Ticket ── -->
   <div id="view-ticket" class="view">
     <div class="form-header">
-      <h1 class="form-title"><img src="icons/Ink Ticket.png" alt="Ink Ticket" class="form-title-icon"> Ink Ticket</h1>
+      <h1 class="form-title">🎟 Ink Ticket</h1>
       <p class="form-desc">毎月25日までに申し込んでください。翌月1日にコードをお渡しします。所属ライバー限定です。</p>
     </div>
 
     <div class="ticket-benefits card">
       <div class="section-heading"><span class="section-icon">◆</span>Ink Inc.ライバーの特典</div>
       <div class="benefit-list">
-        <div class="benefit-item"><img src="icons/ムビチケ.png" alt="ムビチケ" class="benefit-icon"> ムビチケ 1,500円分</div>
-        <div class="benefit-item"><img src="icons/スタバ.png" alt="スタバ" class="benefit-icon"> スタバ 500円分 × 3枚</div>
-        <div class="benefit-item"><img src="icons/もらわない.png" alt="もらわない" class="benefit-icon"> 今月はもらわない</div>
+        <div class="benefit-item">🎬 ムビチケ 1,500円分</div>
+        <div class="benefit-item">☕ スタバ 500円分 × 3枚</div>
+        <div class="benefit-item">🙅 今月はもらわない</div>
       </div>
     </div>
 
@@ -385,7 +378,7 @@
   <!-- ── Ink Voice ── -->
   <div id="view-voice" class="view">
     <div class="form-header">
-      <h1 class="form-title"><img src="icons/Ink Voice.png" alt="Ink Voice" class="form-title-icon"> Ink Voice</h1>
+      <h1 class="form-title">💬 Ink Voice</h1>
       <p class="form-desc">所長から案内があった際にご回答ください。所属ライバー限定です。</p>
     </div>
     <form id="form-voice" novalidate>
@@ -429,7 +422,7 @@
   <div id="view-check" class="view">
     <div class="form-header">
       <p class="form-date" id="check-date"></p>
-      <h1 class="form-title"><img src="icons/Ink Check.png" alt="Ink Check" class="form-title-icon"> Ink Check</h1>
+      <h1 class="form-title">❤️‍🩹 Ink Check</h1>
       <p class="form-desc">毎月1日に回答してください。所属ライバー限定です。</p>
     </div>
     <form id="form-check" novalidate>
@@ -490,7 +483,7 @@
   <!-- ── Ink Milestone ── -->
   <div id="view-milestone" class="view">
     <div class="form-header">
-      <h1 class="form-title"><img src="icons/Ink Milestone.png" alt="Ink Milestone" class="form-title-icon"> Ink Milestone</h1>
+      <h1 class="form-title">🏆 Ink Milestone</h1>
       <p class="form-desc">Ink Achieve・Ink Song・Ink Duo申請はこちらから。所属ライバー限定です。</p>
     </div>
 
@@ -529,13 +522,13 @@
 
       <section class="card" id="milestone-form-body">
         <div class="field-group">
-          <label class="field-label required">達成内容</label>
+          <label class="field-label required">報告・達成内容</label>
           <select id="milestone-type" name="milestone_type" class="select-input" required>
             <option value="">選択してください</option>
-            <optgroup label="♚ Ink Achieve（収益化達成）">
-              <option value="Ink Achieve報告（収益化達成）" id="ink-duo-option">Ink Achieve報告（収益化達成）</option>
+            <optgroup label="🌟 Ink Achieve（収益化達成の報告）">
+              <option value="収益化達成">収益化達成</option>
             </optgroup>
-            <optgroup label="♪ Ink Song（ランク達成・維持のお祝い）">
+            <optgroup label="🎵 Ink Song（ランク達成・維持のお祝い）">
               <option value="C5ランク到達">C5ランク到達</option>
               <option value="B1ランク到達">B1ランク到達</option>
               <option value="A1ランク到達">A1ランク到達</option>
@@ -544,7 +537,7 @@
               <option value="S3ランク到達">S3ランク到達</option>
               <option value="S3ランク維持（1ヶ月）">S3ランク維持（1ヶ月）</option>
             </optgroup>
-            <optgroup label="♫ Ink Duo（2ヶ月継続の感謝）">
+            <optgroup label="🎶 Ink Duo（2ヶ月継続の感謝）">
               <option value="Ink Duo申請（2ヶ月継続達成）" id="ink-duo-option">Ink Duo申請（2ヶ月継続達成）</option>
             </optgroup>
           </select>
@@ -570,6 +563,135 @@
       <p class="privacy-note">所属ライバー限定です。</p>
     </form>
     <div id="milestone-result" class="result-card" hidden></div>
+  </div>
+
+  <!-- ── Ink Book ── -->
+  <div id="view-book" class="view">
+    <div class="form-header">
+      <h1 class="form-title">📅 個別予約</h1>
+      <p class="form-desc">所長との個別面談・相談・カウンセリングを予約できます。ご利用にはパスワードが必要です。</p>
+    </div>
+
+    <!-- ロック画面 -->
+    <div id="book-lock" class="lock-screen">
+      <div class="lock-icon">🔒</div>
+      <p class="lock-desc">
+        個別予約はパスワードが必要です。<br><br>
+        <strong>所属希望の方へ：</strong><br>
+        まずは「応募フォーム（Ink Entry）」からご応募ください。<br>
+        審査後、所長よりDiscordにてパスワードをお送りします。<br><br>
+        <strong>所属ライバーの方へ：</strong><br>
+        Discordでお知らせしているパスワードを入力してください。
+      </p>
+      <div class="field-group" style="max-width:320px;margin:16px auto 0">
+        <input type="password" id="book-lock-pw" class="text-input" placeholder="パスワードを入力" />
+      </div>
+      <div id="book-lock-error" class="error-msg" hidden></div>
+      <button id="book-lock-btn" class="submit-btn" style="max-width:320px;margin:12px auto 0;display:flex">
+        <span class="btn-label">確認する</span>
+        <span class="spinner" hidden></span>
+      </button>
+    </div>
+
+    <!-- フォーム本体（認証後に表示） -->
+    <form id="form-book" style="display:none" novalidate>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>基本情報</div>
+        <div class="field-group">
+          <label class="field-label required">名前</label>
+          <input type="text" id="book-name" class="text-input" placeholder="ライバー名 or 本名" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">Discord ID</label>
+          <input type="text" id="book-discord" class="text-input" placeholder="例：username または username#0000" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">予約の種別</label>
+          <select id="book-type" class="select-input" required>
+            <option value="">選択してください</option>
+            <option value="entry">所属希望の方（面談）</option>
+            <option value="liver">ライバーの方（相談・カウンセリング）</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label required" id="book-content-label">内容の記述</label>
+          <textarea id="book-content" class="textarea" rows="4" placeholder="簡単でも構いません。話したいことや相談の概要をご記入ください。" required></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>希望日時（所要時間：60分）</div>
+        <p style="font-size:0.78rem;color:var(--text-secondary);margin-bottom:16px;line-height:1.6">
+          翌日以降の日程を入力してください。確定・調整はDiscordにてご連絡いたします。
+        </p>
+
+        <div class="field-group">
+          <label class="field-label required">第1希望日</label>
+          <input type="date" id="book-date1" class="text-input" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">第1希望 時間帯</label>
+          <select id="book-time1" class="select-input" required>
+            <option value="">選択してください</option>
+            <option value="午前（10:00〜12:00）">午前（10:00〜12:00）</option>
+            <option value="午後（13:00〜17:00）">午後（13:00〜17:00）</option>
+            <option value="夜（18:00〜21:00）">夜（18:00〜21:00）</option>
+            <option value="深夜（21:00〜23:00）">深夜（21:00〜23:00）</option>
+            <option value="深夜以降（23:00〜）">深夜以降（23:00〜）</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">第2希望日（任意）</label>
+          <input type="date" id="book-date2" class="text-input" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">第2希望 時間帯（任意）</label>
+          <select id="book-time2" class="select-input">
+            <option value="">選択しない</option>
+            <option value="午前（10:00〜12:00）">午前（10:00〜12:00）</option>
+            <option value="午後（13:00〜17:00）">午後（13:00〜17:00）</option>
+            <option value="夜（18:00〜21:00）">夜（18:00〜21:00）</option>
+            <option value="深夜（21:00〜23:00）">深夜（21:00〜23:00）</option>
+            <option value="深夜以降（23:00〜）">深夜以降（23:00〜）</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">第3希望日（任意）</label>
+          <input type="date" id="book-date3" class="text-input" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">第3希望 時間帯（任意）</label>
+          <select id="book-time3" class="select-input">
+            <option value="">選択しない</option>
+            <option value="午前（10:00〜12:00）">午前（10:00〜12:00）</option>
+            <option value="午後（13:00〜17:00）">午後（13:00〜17:00）</option>
+            <option value="夜（18:00〜21:00）">夜（18:00〜21:00）</option>
+            <option value="深夜（21:00〜23:00）">深夜（21:00〜23:00）</option>
+            <option value="深夜以降（23:00〜）">深夜以降（23:00〜）</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="card pw-section">
+        <div class="section-heading"><span class="section-icon">◆</span>パスワード</div>
+        <div class="field-group">
+          <label class="field-label required">パスワード</label>
+          <input type="password" id="book-password" class="text-input" placeholder="パスワードを入力" required />
+        </div>
+      </section>
+
+      <div id="book-error" class="error-msg" hidden></div>
+      <button type="submit" class="submit-btn pw-submit">
+        <span class="btn-label">予約を申請する</span>
+        <span class="spinner" hidden></span>
+      </button>
+      <p class="privacy-note">内容は所長のみに通知されます</p>
+    </form>
+
+    <div id="book-result" class="result-card" hidden></div>
   </div>
 
 </main>
