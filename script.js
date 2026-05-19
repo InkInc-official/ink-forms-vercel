@@ -588,7 +588,7 @@ document.getElementById("form-book").addEventListener("submit", async (e) => {
   btn.disabled  = true;
   label.hidden  = true;
   spinner.hidden = false;
-  clearError("book-error");
+  hideError("book-error");
 
   const applicantName  = document.getElementById("book-name").value.trim();
   const discordId      = document.getElementById("book-discord").value.trim();
