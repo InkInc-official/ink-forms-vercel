@@ -166,9 +166,30 @@ function showResult(resultId, message, success = true) {
 
 function showError(errorId, message) {
   const el = document.getElementById(errorId);
-  el.textContent = message;
+  el.textContent = formatErrorMessage(message);
   el.hidden = false;
   el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+// FastAPIのバリデーションエラー（配列 or オブジェクト）が渡ってきても
+// "[object Object]" にならないよう、読める文章に変換する
+function formatErrorMessage(message) {
+  if (typeof message === "string") return message;
+  if (Array.isArray(message)) {
+    // 例: [{loc:["body","discord_id"], msg:"Field required", type:"missing"}, ...]
+    const fields = message.map(item => {
+      if (item && typeof item === "object") {
+        const loc = Array.isArray(item.loc) ? item.loc[item.loc.length - 1] : "";
+        return `${loc}: ${item.msg || "入力に誤りがあります"}`;
+      }
+      return String(item);
+    });
+    return `入力内容をご確認ください（${fields.join(" / ")}）`;
+  }
+  if (message && typeof message === "object") {
+    return message.msg || message.detail || "送信に失敗しました";
+  }
+  return "送信に失敗しました";
 }
 
 function hideError(errorId) {
