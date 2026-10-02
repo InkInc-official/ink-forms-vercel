@@ -265,6 +265,114 @@ document.getElementById("form-contract").addEventListener("submit", async (e) =>
   } finally { btn.disabled = false; }
 });
 
+// ── Ink Music ──────────────────────────────────
+
+const inkmusicCategoryRadios = document.querySelectorAll('#form-inkmusic input[name="category"]');
+const inkmusicTodokeFields   = document.getElementById("inkmusic-todoke-fields");
+const inkmusicShinseiFields  = document.getElementById("inkmusic-shinsei-fields");
+
+function updateInkMusicCategoryView() {
+  const checked = document.querySelector('#form-inkmusic input[name="category"]:checked');
+  const isShinsei = checked && checked.value === "申請";
+  inkmusicTodokeFields.style.display  = isShinsei ? "none" : "block";
+  inkmusicShinseiFields.style.display = isShinsei ? "block" : "none";
+}
+inkmusicCategoryRadios.forEach(r => r.addEventListener("change", updateInkMusicCategoryView));
+updateInkMusicCategoryView();
+
+const inkmusicLyricsCheckbox   = document.querySelector('.inkmusic-request-type[value="歌詞の改変"]');
+const inkmusicLyricsGroup      = document.getElementById("inkmusic-lyrics-group");
+const inkmusicLyricsAfterGroup = document.getElementById("inkmusic-lyrics-after-group");
+
+if (inkmusicLyricsCheckbox) {
+  inkmusicLyricsCheckbox.addEventListener("change", () => {
+    const show = inkmusicLyricsCheckbox.checked;
+    inkmusicLyricsGroup.style.display = show ? "block" : "none";
+    inkmusicLyricsAfterGroup.style.display = show ? "block" : "none";
+  });
+}
+
+document.getElementById("form-inkmusic").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  hideError("inkmusic-error");
+
+  const form = e.target;
+  const fd = new FormData(form);
+
+  const category         = fd.get("category");
+  const activityName     = fd.get("activity_name")?.trim();
+  const contact          = fd.get("contact")?.trim();
+  const channelUrl       = fd.get("channel_url")?.trim();
+  const songName         = fd.get("song_name")?.trim();
+  const songYoutubeUrl   = fd.get("song_youtube_url")?.trim();
+  const usageType        = fd.get("usage_type");
+  const agreeGuideline   = !!fd.get("agree_guideline");
+  const guardianConsent  = !!fd.get("guardian_consent");
+
+  if (!activityName || !contact || !channelUrl || !songName || !songYoutubeUrl || !usageType) {
+    showError("inkmusic-error", "必須項目をすべて入力してください");
+    return;
+  }
+  if (!agreeGuideline) {
+    showError("inkmusic-error", "ガイドラインへの同意が必要です");
+    return;
+  }
+
+  const payload = {
+    activity_name: activityName,
+    contact,
+    channel_url: channelUrl,
+    song_name: songName,
+    song_youtube_url: songYoutubeUrl,
+    usage_type: usageType,
+    category,
+    agree_guideline: agreeGuideline,
+    guardian_consent: guardianConsent,
+  };
+
+  if (category === "申請") {
+    const selected = Array.from(document.querySelectorAll(".inkmusic-request-type:checked")).map(el => el.value);
+    if (!selected.length) {
+      showError("inkmusic-error", "申請内容を選択してください");
+      return;
+    }
+    payload.request_types = selected.join(",");
+
+    if (selected.includes("歌詞の改変")) {
+      const lyricsBefore = fd.get("lyrics_before")?.trim();
+      const lyricsAfter  = fd.get("lyrics_after")?.trim();
+      if (!lyricsBefore || !lyricsAfter) {
+        showError("inkmusic-error", "歌詞の改変には変更前・変更後の歌詞が必要です");
+        return;
+      }
+      payload.lyrics_before = lyricsBefore;
+      payload.lyrics_after  = lyricsAfter;
+    }
+  } else {
+    payload.public_url       = fd.get("public_url")?.trim() || null;
+    payload.publish_schedule = fd.get("publish_schedule") || null;
+  }
+
+  const btn = form.querySelector(".submit-btn");
+  btn.disabled = true;
+  try {
+    const res = await apiFetch(`${API}/api/inkmusic/submit`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      form.style.display = "none";
+      showResult("inkmusic-result", data.message);
+    } else {
+      showError("inkmusic-error", data.detail || "送信に失敗しました");
+    }
+  } catch(err) {
+    showError("inkmusic-error", `送信に失敗しました: ${err.message}`);
+  } finally { btn.disabled = false; }
+});
+
 // ── Ink Ticket 送信 ───────────────────────────
 document.getElementById("form-ticket").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -348,7 +456,7 @@ document.getElementById("form-contact").addEventListener("submit", async (e) => 
       showError("contact-error", data.detail || "送信に失敗しました");
     }
   } catch(err) {
-    showError("contact-error", );
+    showError("contact-error", `送信に失敗しました: ${err.message}`);
   } finally { btn.disabled = false; }
 });
 

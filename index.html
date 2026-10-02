@@ -23,6 +23,7 @@
   <div class="tab-nav" id="tab-nav">
     <button class="tab-btn active" data-tab="entry">応募フォーム</button>
     <button class="tab-btn" data-tab="contract">本申込みフォーム</button>
+     <button class="tab-btn" data-tab="inkmusic">Ink Music利用フォーム</button>
     <button class="tab-btn" data-tab="contact">お問い合わせ</button>
     <div class="tab-break"></div>
     <button class="tab-btn" data-tab="ticket">Ink Ticket</button>
@@ -294,6 +295,123 @@
       <p class="privacy-note">入力内容は所長のみが確認します。口座情報・身分証はDiscordに送信されません。</p>
     </form>
     <div id="contract-result" class="result-card" hidden></div>
+  </div>
+
+  <!-- ── Ink Music ── -->
+  <div id="view-inkmusic" class="view">
+    <div class="form-header">
+      <h1 class="form-title">🎵 Ink Music 利用フォーム</h1>
+      <p class="form-desc">Ink Musicの楽曲を使った動画の投稿報告・カラオケ音源の制作依頼・歌詞改変の申請はこちらから。どなたでもご利用いただけます。</p>
+    </div>
+    <form id="form-inkmusic" novalidate>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>基本情報</div>
+        <div class="field-group">
+          <label class="field-label required">活動名</label>
+          <input type="text" name="activity_name" class="text-input" placeholder="活動名・チャンネル名など" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">連絡先</label>
+          <input type="text" name="contact" class="text-input" placeholder="X ID・Discord・メールなど" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">チャンネルURL</label>
+          <input type="text" name="channel_url" class="text-input" placeholder="https://youtube.com/..." required />
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>使用楽曲</div>
+        <div class="field-group">
+          <label class="field-label required">使用する楽曲名</label>
+          <input type="text" name="song_name" class="text-input" placeholder="楽曲名を入力" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label required">使用楽曲のYouTube URL</label>
+          <input type="text" name="song_youtube_url" class="text-input" placeholder="https://youtube.com/watch?v=..." required />
+          <p style="font-size:0.78rem;color:var(--text-secondary);margin-top:6px;line-height:1.6">楽曲数が多いため、取り違え防止のため元動画のURLも必ずご記入ください。</p>
+        </div>
+        <div class="field-group">
+          <label class="field-label required">利用形態</label>
+          <select name="usage_type" class="select-input" required>
+            <option value="">選択してください</option>
+            <option>歌ってみた</option>
+            <option>Arrange</option>
+            <option>AI Vocal</option>
+            <option>AI Remix</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>区分</div>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="category" value="届出" checked /><span class="radio-custom"></span>届出（投稿・完成後の事後報告）</label>
+          <label class="radio-label"><input type="radio" name="category" value="申請" /><span class="radio-custom"></span>申請（カラオケ音源の制作依頼／歌詞の改変）</label>
+        </div>
+        <p style="font-size:0.78rem;color:var(--text-secondary);margin-top:10px;line-height:1.6">
+          カラオケ音源が公開済みの楽曲は、許可を待たずに先に制作・投稿していただけます。投稿後にこのフォームから「届出」としてご報告ください。<br>
+          音源がまだ無い楽曲のご依頼や、歌詞を変更したい場合は「申請」を選択してください（事前の確認が必要です）。<br>
+          カラオケ音源は <a href="https://github.com/InkInc-official/ink-music/releases" target="_blank" rel="noopener">GitHub Releases</a> から順次公開中です。
+        </p>
+      </section>
+
+      <!-- 届出用フィールド -->
+      <section class="card" id="inkmusic-todoke-fields">
+        <div class="section-heading"><span class="section-icon">◆</span>届出内容</div>
+        <div class="field-group">
+          <label class="field-label">公開URL</label>
+          <input type="text" name="public_url" class="text-input" placeholder="https://youtube.com/watch?v=..." />
+          <p style="font-size:0.78rem;color:var(--text-secondary);margin-top:6px;line-height:1.6">投稿前に先に届出だけ済ませたい場合のみ空欄でも構いません。</p>
+        </div>
+        <div class="field-group">
+          <label class="field-label">公開予定日（任意）</label>
+          <input type="date" name="publish_schedule" class="text-input" />
+        </div>
+      </section>
+
+      <!-- 申請用フィールド -->
+      <section class="card" id="inkmusic-shinsei-fields" style="display:none">
+        <div class="section-heading"><span class="section-icon">◆</span>申請内容</div>
+        <div class="field-group">
+          <label class="field-label required">申請内容（複数選択可）</label>
+          <label class="checkbox-label">
+            <input type="checkbox" class="inkmusic-request-type" value="カラオケ音源の制作依頼" />
+            <span>カラオケ音源の制作依頼</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" class="inkmusic-request-type" value="歌詞の改変" />
+            <span>歌詞の改変</span>
+          </label>
+        </div>
+        <div class="field-group" id="inkmusic-lyrics-group" style="display:none">
+          <label class="field-label required">変更前の歌詞</label>
+          <textarea name="lyrics_before" class="textarea" rows="4" placeholder="変更前の歌詞を入力"></textarea>
+        </div>
+        <div class="field-group" id="inkmusic-lyrics-after-group" style="display:none">
+          <label class="field-label required">変更後の歌詞</label>
+          <textarea name="lyrics_after" class="textarea" rows="4" placeholder="変更後の歌詞を入力"></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-heading"><span class="section-icon">◆</span>同意事項</div>
+        <label class="checkbox-label">
+          <input type="checkbox" name="agree_guideline" required />
+          <span><a href="https://inkinc-hp.vercel.app/ink-music-guideline" target="_blank" rel="noopener">Ink Music 利用ガイドライン</a>に同意します</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="guardian_consent" />
+          <span>未成年の場合、保護者の同意を得ています</span>
+        </label>
+      </section>
+
+      <div id="inkmusic-error" class="error-msg" hidden></div>
+      <button type="submit" class="submit-btn"><span>送信する</span></button>
+      <p class="privacy-note">入力内容は所長のみが確認します。</p>
+    </form>
+    <div id="inkmusic-result" class="result-card" hidden></div>
   </div>
 
   <!-- ── Ink Contact ── -->
